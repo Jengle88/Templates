@@ -21,6 +21,7 @@
 #include <type_traits>
 #include <deque>
 #include <unordered_map>
+#include <unordered_set>
 //#include <Windows.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -61,7 +62,7 @@ void build(vector<hoba> &a)// sub-arrays
 	a.back().r = n - 1;
 }
 
-struct hoba2 //fullarray 
+struct hoba2 //full array 
 {
 	int x, l;
 };
@@ -88,10 +89,9 @@ struct hoba3 //graph
 };
 
 void build(vector<hoba3> &a, vector<int> &heavy)// graph (heavy-light-node)
-{												// Тяжелых вершин <= sqrt(n)
-	int n, m, i1, i2;							// От лёгких делаем обход, от тяжёлых
-	cin >> n >> m;								// обновляем только тяжёлые
-	a.resize(n + 1);
+{						// heavy node no more than sqrt(n)
+	int n, m, i1, i2;			// if node is light, then we can do bfs
+	cin >> n >> m;				// else we can update nearest heavy edges
 	for (int i = 1; i <= n; i++)
 	{
 		cin >> a[i].x;
@@ -123,13 +123,13 @@ void build(vector<hoba3> &a, vector<int> &heavy)// graph (heavy-light-node)
 
 
 int main() {
-	/*#ifndef ONLINE_JUDGE
+	#ifndef ONLINE_JUDGE
 		freopen("input.txt", "r", stdin);
 		//freopen("output.txt", "w", stdout);
 	#else
-	#endif*/
-	 freopen("input.txt", "r", stdin);
-   //freopen("output.txt", "w", stdout);
+	#endif
+	//freopen("input.txt", "r", stdin);
+   	//freopen("output.txt", "w", stdout);
 	ios_base::sync_with_stdio(0);
 	cin.tie(0); cout.tie(0);
 
