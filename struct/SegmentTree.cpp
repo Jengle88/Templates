@@ -95,12 +95,12 @@ int query(hoba *root, int l, int r)
 }
 
 int main() {
-/*#ifndef ONLINE_JUDGE
+#ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
 	//freopen("output.txt", "w", stdout);
 #else
-#endif*/
-	freopen("input.txt", "r", stdin);
+#endif
+	//freopen("input.txt", "r", stdin);
 	//freopen("input2.txt", "w", stdout);
 	ios_base::sync_with_stdio(0);
 	cin.tie(0); cout.tie(0);
