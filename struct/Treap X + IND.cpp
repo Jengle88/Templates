@@ -148,7 +148,7 @@ public:
 	void mas_insert(vector<int> &a)// vector->treap
 	{
 		this->root = new treap;
-		for (int i = 1; i < a.size(); i++)
+		for (int i = 0; i < a.size(); i++)
 		{
 			this->insertk(i, a[i]);
 		}
