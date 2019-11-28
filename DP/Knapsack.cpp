@@ -54,8 +54,8 @@ int main() {
 	cin.tie(0); cout.tie(0);
 	int n, m;//things, need weight
 	cin >> m >> n;
-	vector<vector<int>> kn(n+1, vector<int>(m+1));
-	vector<int> a(n+1), ans;//recovered answer
+	vector<vector<int>> kn(n+1, vector<int>(m+1));// DP table
+	vector<int> a(n+1), ans;//things, recovered answer
 	for (int i = 1; i <= n; i++)
 		cin >> a[i];
 	for (int i = 1; i <= n; i++)
