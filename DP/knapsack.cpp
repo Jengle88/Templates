@@ -71,4 +71,4 @@ int main() {
 	recov(kn, a,ans);// recover answer
 	cout << kn[kn.size()-1][kn[0].size() - 1];//max size
 	return 0;
-}
+} 
