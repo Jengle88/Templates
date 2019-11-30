@@ -41,10 +41,10 @@ int findik(int x)// find root set, where a[x] elem
 {
 	if (a[x].val != x)
 		a[x].val = findik(a[x].val);//fastly
-	return a[x].val;
+	return a[x].val;			    //doesn't always work
 	/*
 	while(a[x].val != x)  //slowly
-		x = a[x].val;
+		x = a[x].val;	 
 	return x;
 	*/
 }
