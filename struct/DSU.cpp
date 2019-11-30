@@ -37,14 +37,19 @@ struct hoba
 };
 
 vector<hoba> a;
-int findik(int x)
+int findik(int x)// find root set, where a[x] elem
 {
 	if (a[x].val != x)
-		a[x].val = findik(a[x].val);
+		a[x].val = findik(a[x].val);//fastly
 	return a[x].val;
+	/*
+	while(a[x].val != x)  //slowly
+		x = a[x].val;
+	return x;
+	*/
 }
 
-void unionchik(int x, int y)
+void unionchik(int x, int y)//unoin two set, less -> greater
 {
 	x = findik(x), y = findik(y);
 	if (a[x].val == a[y].val)
