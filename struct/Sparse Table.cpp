@@ -29,8 +29,6 @@ template <class T>
 using pt = std::pair<T, T>;
 using namespace std;
 
-//int f(int a, int b);
-
 class Sparse
 {
 private:
@@ -84,7 +82,7 @@ int f(int a, int b)//compar func
 	return max(a, b);
 }
 
-void solve()
+void solve()//example
 {
 	Sparse t;
 	int n;
@@ -96,7 +94,7 @@ void solve()
 	while (q--)
 	{
 		int l, r;
-		cin >> l >> r;
+		cin >> l >> r;//if l from [1,n]
 		cout << t.out(l, r) << ' ';
 	}
 
