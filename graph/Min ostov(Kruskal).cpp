@@ -41,16 +41,16 @@ struct snmachka //DSU
 	int val,size; //root,size set
 
 };
-vector<snmachka> mnoj;//set our edges
+vector<snmachka> mnoj;//set of our edges
 
-int findik(int x)
+int findik(int x)//find
 {
 	if (mnoj[x].val != x)
 		mnoj[x].val = findik(mnoj[x].val);
 	return mnoj[x].val;
 }
 
-void unionchik(int x,int y)
+void unionchik(int x,int y)//unoin
 {
 	x = findik(x), y = findik(y);
 	if (mnoj[x].val == mnoj[y].val)
