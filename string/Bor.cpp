@@ -35,15 +35,15 @@ class bor
 {
 	struct vert
 	{
-		char c;
-		int cnt;
-		map<char, vert*> edg;
+		char c;//symbol
+		int cnt;// count of strings ending here
+		map<char, vert*> edg;//next vert
 		vert(char c) : c(c), cnt(0) {};
 		vert() {};
 	};
-	vert* root = new vert;
+	vert* root = new vert;//your root
 public:
-	vert* getr()
+	vert* getr()//get root
 	{
 		return root;
 	}
@@ -62,7 +62,7 @@ public:
 			insert(root->edg[s[ind]], s, ind + 1);
 		}
 	}
-	bool find(vert* root, string &s, int ind = 0)
+	bool find(vert* root, string &s, int ind = 0)//find string
 	{
 		if (ind == s.size())// && root->cnt != 0)
 			return true;
@@ -71,6 +71,7 @@ public:
 		else
 			return false;
 	}
+	//for lcp are using lca on bor
 };
 
 void solve()
