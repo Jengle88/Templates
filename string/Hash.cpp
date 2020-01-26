@@ -36,7 +36,7 @@ private:
 	vector<int> power, prefix;//step x, tabl
 
 public:
-	_hash(const string& s, int x = 73, int m = 1e9+7) : x(x), m(m)//build hash
+	_hash(const string& s, int x = 73, int m = 1e9 + 7) : x(x), m(m)//build hash
 	{
 		power.resize(s.size() + 1);
 		prefix.resize(s.size() + 1);
@@ -51,24 +51,41 @@ public:
 			prefix[i + 1] = ((ll)prefix[i] * x + s[i] - 'a' + 1) % m;
 		}
 	}
+	int sum_hash(string& s1, string& s2)//hash1 + hash2
+	{
+		return ((ll)get_hashf(s1)* power[s2.size()] + (ll)get_hashf(s2)) % m;
+	}
+	int sum_hash(int l, int r, string &s)//prefix[r] + hash2
+	{
+		return (get_hashp(l, r) * power[s.size()] + (ll)get_hashf(s)) % m;
+	}
 	int get_size()// size prefix
 	{
 		return prefix.size();
 	}
-	int get_hashp(int i, int j)//hash on substr
+	int get_hashp(int i = 1, int j = -1)//hash on substr
 	{
-		return (prefix[j] - (ll)prefix[i - 1] * power[j - i + 1] % m + m) % m;
+		if (j == -1)//0 -> i
+			return prefix[i];
+		else//i -> j
+			return (prefix[j] - (ll)prefix[i - 1] * power[j - i + 1] % m + m) % m;
 	}
-	int get_hashf(string &s)//hash func
+	int get_hashstr()//full hash
+	{
+		return prefix.back();
+	}
+	int get_hashf(string &s,int l = 0,int r = 1e9)//hash func
 	{
 		int res = 0;
-		for (auto c : s)
+		int size = min((size_t)r, s.size());
+		for (int i = l; i < size; i++)
 		{
-			res = ((ll)res * x + c - 'a' + 1) % m;
+			res = ((ll)res * x + s[i] - 'a' + 1) % m;
 		}
 		return res;
 	}
 };
+
 
 void solve()//example
 {
