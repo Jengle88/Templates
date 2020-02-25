@@ -30,7 +30,7 @@ template <class T>
 using pt = std::pair<T, T>;
 using namespace std;
 
-vector<int> t, a;
+vector<ll> t, a;
 
 int f(int x)//for add
 {
@@ -40,9 +40,9 @@ int h(int x)//for out
 {
 	return x | (x + 1);
 }
-void add(int i, int x)//add elem
+void add(int i, ll x)//add elem
 {
-	int c = x - a[i]; //delta
+	ll c = x - a[i]; //delta
 	while (i < a.size())
 	{
 		t[i] += c;
@@ -50,15 +50,47 @@ void add(int i, int x)//add elem
 	}
 }
 
-int prefs(int k)//print sum on sub-section
+ll prefs(int k)//print sum on sub-section
 {
-	int res = 0;// score
+	ll res = 0;// score
 	while (k >= 0)
 	{
 		res += t[k];
 		k = f(k) - 1;
 	}
 	return res;
+}
+
+void example()
+{
+	int n;
+	int tt, q;
+	cin >> n >> q;
+	a.resize(n + 1); t.resize(n + 1);//our array, temp array
+	ll i1;
+	for (int i = 1; i <= n; i++)
+	{
+		cin >> i1;
+		upd(i, i1);
+		a[i] = i1;
+	}
+	while (q--)
+	{
+		cin >> tt;
+		if (tt)//edit
+		{
+			ll ind, d;
+			cin >> ind >> d;
+			upd(ind, d);
+			a[ind] = d;
+		}
+		else//out subsum
+		{
+			int l, r;
+			cin >> l >> r;
+			cout << sum(r) - sum(l - 1) << '\n';
+		}
+	}
 }
 
 int main() {
