@@ -37,7 +37,7 @@ private:
 
 public:
 	_hash(const string& s, int x = 73, int m = 1e9 + 7) : x(x), m(m)//build hash
-	{
+	{			//if s[i] = {'A','a' and '1'} => x = 221!!
 		power.resize(s.size() + 1);
 		prefix.resize(s.size() + 1);
 
