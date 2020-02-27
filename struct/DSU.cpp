@@ -34,6 +34,8 @@ struct hoba
 	int val;
 	int min = 1e9, max = -1e9;
 	int size = 1;
+	hoba() { static int indx = 1; val = indx; indx++; }
+
 };
 
 vector<hoba> a;
@@ -76,12 +78,6 @@ int main() {
 	int n;
 	cin >> n;
 	a.resize(n+1);
-	for (int i = 1; i <= n; i++)
-	{
-		a[i].val = i;
-		a[i].max = i;
-		a[i].min = i;
-	}
 	string s;
 	int i1, i2;
 	while (cin >> s)
