@@ -71,7 +71,7 @@ int direction(point &a, point &b)
 {
 	ld z = vectproz(a, b);	
 	if (z < eps)
-		return 0;//Direct
+		return 0;//Straight
 	else
 		return z > 0 ? 1 : -1; //Left, Right
 }
@@ -89,7 +89,7 @@ ld SS(vector<point> &a)
 {
 	ld ansS = 0;
 	a.push_back(a.front());
-	for (int i = 0; i < a.size(); i++)
+	for (int i = 0; i < a.size() - 1; i++)
 	{
 		ansS += (a[i + 1].x - a[i].x) * (a[i + 1].y + a[i].y) / 2;
 	}
