@@ -93,7 +93,7 @@ ld SS(vector<point> &a)
 	{
 		ansS += (a[i + 1].x - a[i].x) * (a[i + 1].y + a[i].y) / 2;
 	}
-	return ansS;
+	return abs(ansS);
 }
 
 int main() {
