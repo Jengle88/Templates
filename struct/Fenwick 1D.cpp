@@ -32,11 +32,11 @@ using namespace std;
 
 vector<ll> t, a;
 
-int f(int x)//for add
+int f(int x)//for out
 {
 	return x & (x + 1);
 }
-int h(int x)//for out
+int h(int x)//for add
 {
 	return x | (x + 1);
 }
