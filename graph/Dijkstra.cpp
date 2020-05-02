@@ -1,5 +1,6 @@
 //Goodbye stupid girls & Hello L0u1Za, Codeforces and my friends(nobody)
 #define _CRT_SECURE_NO_WARNINGS
+#define inf 1e9
 #include <vector>
 #include <iostream>
 #include <algorithm>
@@ -29,66 +30,64 @@ template <class T>
 using pt = std::pair<T, T>;
 using namespace std;
 
+struct ed
+{
+	int to;
+	int len = 0;
+};
 struct hoba
 {
-	int dist = 1e9;
-	vector<pt<int>> ed;
+	int dist = inf;
+	vector<ed> a;
 };
 vector<hoba> gr;
 
-void djk(int st,int fin)
+void djk(int st)
 {
-	priority_queue<pt<int>> q;
-	q.push({ 0,st });
+	priority_queue<pt<int>> q;//len,to
 	gr[st].dist = 0;
+	q.push({ 0,st });
 	while (!q.empty())
 	{
-		int dist = q.top().first;
-		int x = q.top().second;
+		auto pr = q.top();//len, to
 		q.pop();
-		for (int i = 0; i < gr[x].ed.size(); i++)
+		for (int i = 0; i < gr[pr.second].a.size(); i++)
 		{
-			int u = gr[x].ed[i].first;
-			if (gr[u].dist < dist)
-				continue;
-			if (gr[u].dist > gr[x].dist + gr[x].ed[i].second)
+			auto pr2 = gr[pr.second].a[i];//to and len
+			if (gr[pr2.to].dist > pr.first + pr2.len)
 			{
-				gr[u].dist = gr[x].dist + gr[x].ed[i].second;
-				q.push({gr[u].dist, u});
+				gr[pr2.to].dist = pr.first + pr2.len;
+				q.push({ gr[pr2.to].dist,pr2.to });
 			}
 		}
 	}
 }
 
+
 void example()
 {
-	int n, a, b, i1;
-	cin >> n >> a >> b;
-	gr.resize(n);
-	/*	int m;//edges list
-		cin >> m;
-		int i2, i3, i4;
-		for (int i = 0; i < m; i++)
-		{
-			cin >> i2 >> i3 >> i4;
-			gr[i2-1].ed.push_back({ i3-1,i4 });
-		}*/
-	for (int i = 0; i < n; i++)//matrix
+	int n, s, f;
+	cin >> n >> s >> f;
+	int i1;
+	gr.resize(n + 1);
+	for (int i = 1; i <= n; i++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int j = 1; j <= n; j++)
 		{
 			cin >> i1;
-			if (i == j || i1 == -1)
+			if (i == j)
 				continue;
-			else
-				gr[i].ed.push_back({ j,i1 });
+			if (i1 != -1)
+			{
+				gr[i].a.push_back({ j,i1 });
+			}
 		}
 	}
-	djk(--a, --b);
-	if (gr[b].dist == 1e9)
+	djk(s);
+	if (gr[f].dist == inf)
 		cout << -1;
 	else
-		cout << gr[b].dist;
+		cout << gr[f].dist;
 }
 
 int main() {
