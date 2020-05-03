@@ -47,10 +47,10 @@ void ford_belm(int st)
 	for (int i = 1; i < gr.size(); i++)
 	{
 		for (int j = 1; j < gr.size(); j++)	  //for all edges each time
-		{									  //for all edges each time
-			for (auto val : gr[j].a)		  //for all edges each time
+		{					  //for all edges each time
+			for (auto val : gr[j].a)          //for all edges each time
 			{
-				if(gr[j].dist != inf)//if not inf, then edit
+				if(gr[j].dist != inf)//if not infinity, then increase
 					gr[val.to].dist = min(gr[val.to].dist, gr[j].dist + val.len);
 			}
 		}
